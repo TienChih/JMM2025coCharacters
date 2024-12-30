@@ -1,0 +1,2003 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+		<link rel="stylesheet" href="plugin/chalkboard/style.css">
+		<link rel="stylesheet" href="plugin/customcontrols/style.css">
+    
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+
+
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.container{
+   				 display: flex;
+			}
+			.col{
+    			flex: 1;
+			}
+		</style>
+			<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+		<script src="plugin/menu/menu.js"></script>
+
+
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				
+				<section>
+					<h3>The cocharacteristic function and cosaturated Transfer Systems</h3>
+					<h4>JMM 2025</h4>
+					<p>	The coCharacters: 
+						<a href="mailto:jishnubo@usc.edu" target="_blank">Jishnu Bose</a>, 
+						<a href="mailto:tien.chih@emory.edu" target="_blank">Tien Chih</a>, 
+						<a href="mailto:hannah.housden@vanderbilt.edu" target="_blank">Hannah Housden</a>, 
+						<a href="mailto:legjones@iu.edu" target="_blank">Legrand Jones</a>, 
+						<a href="mailto:lewischl@uwec.edu" target="_blank">Chloe Lewis</a>, 
+						<a href="mailto:ormsbyk@reed.edu" target="_blank">Kyle Ormsby</a>, 
+						<a href="mailto:math@milliero.se" target="_blank">Millie Rose</a>
+					</p>
+				</section>
+				<section>
+						<h4>Acknowledgements</h4>
+
+						<div class="container">
+						<div class="col">
+							<img src="img/cocharacters.jpg" width="90%">
+						</div>
+
+						<div class="col">
+							<br><br><br>
+							<p style="font-size: 28px;">
+								This work was done as a part of the AMS <q>Homotopical Combinatorics</q> MRC, and was supported by the AMS and  NSF grant number ???
+							</p>
+							<div class="container">
+
+							<div class="col">
+								<img src="img/NSF.png" width="50%">
+							</div>
+
+							<div class="col">
+								<img src="img/AMS.jpg" width="50%">
+								
+							</div>
+
+							</div>
+						</div>
+						</div>
+						
+				</section>
+
+				<section>
+						<h4>Disclaimer</h4>
+
+						<p style="font-size: 28px;">
+							I'm not a Algebraic Topologist or Category Theorist 
+						</p>
+						<p style="font-size: 28px;">
+							(I just play one on TV)
+						</p>
+
+						<div class="fragment">
+
+						
+							<img src="img/homotopicalcombinatorics.jpg" width="80%">
+							
+						</div>
+
+						
+				</section>
+
+				<section>
+					<h4>Background</h4>
+						<section data-auto-animate>
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								<strong>Definition</strong>:  A <strong style="color:red;">lattice</strong> is a partially ordered set closed under <strong style="color:red;">joins</strong> (\(\vee\)) and <strong style="color:red;">meets</strong> (\(\wedge\)).
+							</p>
+						</div>
+						<br>
+						<div >
+							<center>
+								<script type="text/tikz">
+								  \begin{tikzpicture}[scale=2.75]
+								    
+								  	\draw[fill, white] (1.5,3) circle (3pt);
+								  	\draw[fill, white] (1.5,-1) circle (4pt);
+
+								  	\draw[fill] (1,3) circle (3pt);
+								  	\draw[fill] (0,2) circle (3pt);
+								    \draw[fill] (1,2) circle (3pt);
+								    \draw[fill] (2,2) circle (3pt);
+								    \draw[fill] (1,1) circle (3pt);
+								    \draw[fill] (3,1) circle (3pt);
+								    \draw[fill] (2,0) circle (3pt);
+
+								    \draw (1,3) -- (0,2) -- (2,0) -- (3,1) -- (1,3);
+								    \draw (1,3) -- (1,1);
+								    \draw (2,2) -- (2,0);
+								    \draw (1,1) -- (2,2);
+
+								  \end{tikzpicture}
+								</script>
+							</center>
+						</div>							
+						</section>	
+
+						<section data-auto-animate>
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								<strong>Definition</strong>: Given a finite lattice \((P, \leq)\), a <strong style="color:red;">transfer system</strong> is an order relation \(R\) which refines \( \leq \), includes all identities, and is closed under pullback.
+							</p>
+							<p style="font-size: 28px;" class="fragment">
+								\[x\leq z, y~R~z \Rightarrow x\wedge y~R~y\] 
+							</p>
+						</div>
+						<div >
+							<center>
+								<img src="img/pullback.gif" width="70%">
+							</center>
+						</div>							
+						</section>	
+
+
+						<section data-auto-animate>
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Definition</strong>: Given a category \(C\), an <strong style="color:red;">weak factorization system</strong> on \(C\) is a pair of collections of morphisms \((L, R)\), such that:
+
+							</p>
+							<ul>
+								<li style="font-size: 28px;">
+									For each morphism \(f\) of \(C\), we have that \(f=pi\) for some \(i\in L\), \(p\in R\).
+								</li>
+								<li style="font-size: 28px;">
+									\(L= ^\bot R\) and \(R=L^\bot\).
+								</li>
+							</ul>
+
+       
+						</div>
+						<div >
+							<center>
+								<script type="text/tikz">
+								  \begin{tikzpicture}[scale=3]
+								    \node (A) at (0,2){\Huge $A$};
+								    \node (B) at (2,2){\Huge $X$};
+								    \node (C) at (0,0){\Huge $B$};
+								    \node (D) at (2,0){\Huge $Y$};
+
+								    \draw[->, thick] (A) --node[above]{\Large $ f$} (B);
+								    \draw[->, thick] (C) --node[below]{\Large  $g$} (D);
+								    \draw[->, thick, red] (B) --node[right]{\Large $p$} (D);
+								    \draw[->, thick, blue] (A) --node[left]{\Large $i$} (C);
+								    \draw[->, thick, dashed] (C)--node[above left]{\Large  $\lambda$} (B);
+								\end{tikzpicture}
+								</script>
+							</center>
+							<p style="font-size: 28px;">
+								    When \(\lambda\) is unique, we say \((L,R)\) is an <strong style="color:red;">orthogonal factorization system</strong>. 
+
+							</p>
+						</div>							
+						</section>	
+
+						<section data-auto-animate>
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Theorem</strong> (FOOQW, 2022): Let \(P\) be a finite lattice, and let \(R\) be a transfer system on \(P\).  Then there is a unique weak (orthogonal) factorization system \((L, R)\) on \(P\).
+
+							</p>
+							
+
+       
+						</div>
+
+						<div >
+							<center>
+								<img src="img/OFS.gif" width="70%">
+							</center>
+						</div>							
+						</section>	
+
+						<section data-auto-animate>
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Theorem</strong> (FOOQW, 2022): Let \(P\) be a finite lattice, and let \(R\) be a transfer system on \(P\).  Then there is a unique weak (orthogonal) factorization system \((L, R)\) on \(P\).
+
+							</p>
+							
+
+       
+						</div>
+
+						<br>
+						
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Theorem</strong> (FOOQW, 2022): Let \(P\) be a finite lattice.  Then \[R\longleftrightarrow (L, R)\] gives an isomorphism between the poset of transfer systems on \(P\) and the poset of weak factorization systems on \(P\).
+
+							</p>
+							
+
+       
+						</div>						
+						</section>	
+						
+						
+					</section>
+
+					<section>
+						<section data-auto-animate>
+						
+						
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Definition: </strong>  Given a finite lattice \(P\), we define the <strong style="color:red;">characteristic function</strong> \(\chi\) to be a map 
+								    \[
+									\begin{aligned}
+								    \chi\colon \mathrm{Tr}\ P&\longrightarrow \mathrm{End}\ P\\
+								    R&\longmapsto \chi^R.
+								    \end{aligned}
+									\]
+									where \(\chi^R\) is the endomorphism which maps \(\chi^R\colon x\mapsto \min\{y\mid  y~R~x\}\).
+
+							</p>
+							
+
+       
+						</div>	
+						<div >
+							<center>
+								<img src="img/Char.gif" width="70%">
+							</center>
+						</div>					
+						</section>
+
+
+						<section data-auto-animate>
+						
+						
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Definition: </strong> A transfer system \(R\) on a lattice \(P\) is called <strong style="color:red;">saturated</strong> when \(x ~R~ y\leq z\) and
+									\(x ~R~ z\) implies \(y ~R~ z\).
+
+							</p>
+							
+
+       
+						</div>	
+						<div >
+							<center>
+								<img src="img/Sat.gif" width="70%">
+							</center>
+						</div>					
+						</section>	
+
+						<section data-auto-animate>
+						
+						
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Theorem </strong> (BHKOPST): Let \(P\) be a finite lattice, then \(\lambda:\mathrm{sat}(P)\to \mathrm{End}^o(P)\) is bijective.
+
+							</p>
+							
+
+       
+						</div>	
+						<br>
+						<div class="fragment">
+							<p style="font-size: 28px;" class="r-frame">
+								    <strong>Theorem </strong> (BHKOPST):  The fibers of \(\chi:\mathrm{Tr}(P)\to \mathrm{End}^o(P)\) have a maximal element, which are exactly the saturated transfer systems of \(P\).
+
+							</p>
+							
+
+       
+						</div>			
+						</section>
+
+
+
+						
+
+
+					</section>
+
+					<section>
+						<section>
+
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Definition: </strong>  Given a finite lattice \(P\), we define the <strong style="color:red;">cocharacteristic function</strong> \(\lambda\) to be a map 
+								    \[
+									\begin{aligned}
+								    \chi\colon \mathrm{Tr}\ P&\longrightarrow \mathrm{End}\ P\\
+								    R&\longmapsto \lambda^R.
+								    \end{aligned}
+									\]
+									where \(\lambda^R\) is the endomorphism which maps \(\lambda^R\colon x\mapsto \min\{y\mid x\le y~R~1\}\).
+
+							</p>
+							
+
+       
+						</div>	
+						<div >
+							<center>
+								<img src="img/coChar.gif" width="70%">
+							</center>
+						</div>					
+						</section>
+
+
+						<section data-auto-animate>
+						
+						
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Definition: </strong> A transfer system \(R\) on a lattice \(P\) is called <strong style="color:red;">cosaturated</strong> if \(R\) is generated by the relations to \(1\).
+
+							</p>
+							
+
+       
+						</div>	
+						<div >
+							<center>
+								<img src="img/pullback.gif" width="70%">
+							</center>
+						</div>					
+						</section>	
+					</section>
+
+					<section>
+
+						<section data-auto-animate>
+							<p style="font-size: 28px;">
+								    Via (FOOQW, 22):
+
+							</p>
+							<div>
+							<p style="font-size: 28px;">
+								    \[
+									\begin{aligned}
+									    \chi\colon \mathrm{Fac} P&\longrightarrow \mathrm{End} P\\
+									    (L, R)&\longmapsto \chi^{(L,R)}
+									\end{aligned}
+									\ \ \ \ \ \ \ \ 
+									\begin{aligned}
+									    \lambda\colon \mathrm{Fac} P&\longrightarrow \mathrm{End} P\\
+									    (L, R)&\longmapsto \lambda^{(L,R)}
+									\end{aligned}
+									\]
+
+							</p>
+							
+
+       
+							</div>
+							<br>
+							<div class="fragment">
+							<p style="font-size: 28px;" class="r-frame">
+								    <strong>Lemma (coCharacters): </strong>	Let \(P\) be a finite lattice, \((L, R)\) a factorization system on \(P\).  Then \(\chi^{(L, R)}(x)=\max\{y:0~L~y\leq x\}\) and \(\lambda^{(L, R)}(x)=\max\{y:x~L~y\}\).
+
+							</p>
+							
+
+       
+							</div>	
+														<br>
+
+							<div class="fragment">
+							<p style="font-size: 28px;" >
+								    \[\chi^{(L,R)}(x)= \min \{y:y ~R~ x\}=\max\{y:0~L~y\leq x\}\]   \[\lambda^{(L,R)}(x)= \max \{y:x ~L~ y\}=\min\{y:x \leq y ~R~1\}\] 
+
+							</p>
+							
+
+       
+							</div>	
+						</section>	
+
+						<section data-auto-animate>
+							<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Proposition (coCharacters): </strong>
+								    Given a factorization system \((L,R)\) on a finite lattice \(P\), the factorization of \(0\to x\) has middle term \(\chi^R (x)\) and the factorization of \(x\to 1\) has middle term \(\lambda^R (x)\):
+
+							</p>
+							
+
+       
+							</div>
+							
+							<br>
+
+							<div >
+							<center>
+								<script type="text/tikz">
+								  \begin{tikzpicture}[scale=3]
+								    \node (A) at (-2,0){\Huge $0$};
+								    \node (B) at (0,0){\Huge $x$};
+								    \node (C) at (2,0){\Huge $1$};
+								    
+								    \node (D) at (-1,-1){\Huge $\chi^R(x)$};
+								    \node (E) at (1, 1){\Huge $\lambda^R(x)$};
+
+								    \draw[->] (A) to (B);
+								    \draw[->] (B) to (C);
+								    \draw[->, blue] (A) --node[below left]{\Large $L$} (D);
+								    \draw[->, red] (D) --node[below right]{\Large $R$} (B);
+								    \draw[->, blue] (B) --node[above left]{\Large $L$} (E);
+								    \draw[->, red] (E) --node[above right]{\Large $R$} (C);
+
+								\end{tikzpicture}
+								</script>
+							</center>
+							
+						</div>	
+						
+						</section>	
+
+						<section data-auto-animate>
+							<div >
+							<p style="font-size: 28px;" class="r-frame">
+								    <strong>Proposition (coCharacters): </strong>
+								    \[
+									    \chi^{(L,R)} = \lambda^{(R^\mathrm{op}, L^\mathrm{op})},
+									    \lambda^{(L,R)} = \chi^{(R^\mathrm{op}, L^\mathrm{op})}.
+									\]
+
+							</p>
+							
+
+       
+							</div>
+							<br>
+
+							<div >
+							<center>
+								<img src="img/dualChar.gif" width="70%">
+							</center>
+							</div>	
+							
+
+						</section>
+						<section data-auto-animate>
+							<div >
+							<p style="font-size: 28px;" class="r-frame">
+								    <strong>Proposition (coCharacters): </strong>
+								    \[
+									    \chi^{(L,R)} = \lambda^{(R^\mathrm{op}, L^\mathrm{op})},
+									    \lambda^{(L,R)} = \chi^{(R^\mathrm{op}, L^\mathrm{op})}.
+									\]
+
+							</p>
+							
+
+       
+							</div>
+							<br>
+
+							<div >
+							<center>
+								<img src="img/dualcoChar.gif" width="70%">
+							</center>
+							</div>	
+							
+
+						</section>
+					</section>
+
+
+					<section>
+						<section data-auto-animate>
+
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Definition: </strong>  For a category \(\mathbf{C}\) with terminal object 1, we say an orthogonal factorization system \((L, R)\) is a <strong style="color:red;">reflective</strong> factorization system if \(R/1\) is a reflective subcategory of \(\mathbf{C}\), that is the inclusion function \(\Phi:R/1\to \mathbf{C}\) has a left adjoint \(\Psi\).
+
+							</p>
+							
+
+       
+						</div>	
+						<br>
+						<div class="fragment">
+							<p style="font-size: 28px;" class="r-frame">
+								    <strong>Theorem</strong> (coCharacters): Let \(P\) be a finite lattice and let \(R\) be a transfer system of \(P\).  Then the factorization system \((L, R)\) is reflective if and only if \(R\) is cosaturated.
+
+							</p>
+							
+
+       
+						</div>				
+						</section>
+
+						<section data-auto-animate>
+
+						<div class="r-frame">
+							<p style="font-size: 28px;">
+								    <strong>Definition: </strong>  For a category \(\mathbf{C}\) with terminal object 1, we say an orthogonal factorization system \((L, R)\) is a <strong style="color:red;">reflective</strong> factorization system if \(R/1\) is a reflective subcategory of \(\mathbf{C}\), that is the inclusion function \(\Phi:R/1\to \mathbf{C}\) has a left adjoint \(\Psi\).
+
+							</p>
+							
+
+       
+						</div>	
+						<br>
+						<div >
+							<p style="font-size: 28px;" class="r-frame">
+								    <strong>Theorem</strong> (coCharacters): Let \(P\) be a finite lattice and let \(R\) be a transfer system of \(P\).  Then the factorization system \((L, R)\) is coreflective if and only if \(R\) is saturated.
+
+							</p>
+							
+
+       
+						</div>				
+						</section>
+
+						<section data-auto-animate>
+
+							<div class="container">
+
+							<div class="col">
+							<div >
+								<p style="font-size: 28px;">
+									    <strong>Proposition</strong> (BHKOPST):  Given a factorization system \((L,R)\) on a finite lattice \(P\), \(\chi^{(L,R)}:P\to P\) is monotone.
+
+
+								</p>
+								
+
+	       
+							</div>	
+							<br>
+							<div class="fragment">
+								<p style="font-size: 28px;" >
+									    <strong>Proposition</strong> (BHKOPST): The map 
+										 \[
+										\begin{aligned}
+										    \chi\colon \mathrm{Fac} P&\longrightarrow \mathrm{End} P\\
+										    (L,R)&\longmapsto \chi^{(L,R)}.
+										\end{aligned}
+										\]
+										is an antitone map of posets.
+
+								</p>
+								
+
+	       
+							</div>			
+							</div>	
+
+							<p>
+
+							</p>
+
+							<div class="col">
+							<div class="fragment">
+								<p style="font-size: 28px;" >
+									    <strong>Proposition</strong> (coCharacters):  Given a factorization system \((L,R)\) on a finite lattice \(P\), \(\lambda^{(L,R)}:P\to P\) is monotone.
+
+
+								</p>
+								
+
+	       
+							</div>	
+							<br>
+							<div class="fragment">
+								<p style="font-size: 28px;" >
+									    <strong>Proposition</strong> (coCharacters): The map 
+										 \[
+										\begin{aligned}
+										    \lambda\colon \mathrm{Fac} P&\longrightarrow \mathrm{End} P\\
+										    (L,R)&\longmapsto \lambda^{(L,R)}.
+										\end{aligned}
+										\]
+										is an antitone map of posets.
+
+								</p>
+								
+
+	       
+							</div>			
+							</div>
+
+							</div>	
+						</section>
+
+						<section data-auto-animate>
+
+							<div class="container">
+
+							<div class="col">
+							<div >
+								<p style="font-size: 28px;">
+									    <strong>Proposition</strong> (BHKOPST):  The fibers of \(\chi\) are intervals.
+
+
+								</p>
+								
+
+	       
+							</div>	
+							<br>
+							<div class="fragment">
+								<p style="font-size: 28px;" >
+									    <strong>Theorem</strong> (BHKOPST): Let \(P\) be a finite lattice, then the maximum elements of the fibers of \(\chi\) are exactly  $\mathrm{coreflect}(P)$.
+
+								</p>
+								
+
+	       
+							</div>			
+							</div>	
+
+							<p>
+
+							</p>
+
+							<div class="col">
+							<div class="fragment">
+								<p style="font-size: 28px;">
+									    <strong>Proposition</strong> (coCharacters):  The fibers of \(\lambda\) are intervals.
+
+
+								</p>
+								
+
+	       
+							</div>	
+							<br>
+							<div class="fragment">
+								<p style="font-size: 28px;" >
+									    <strong>Theorem</strong> (coCharacters): Let \(P\) be a finite lattice, then the minimum elements of the fibers of \(\lambda\) are exactly  $\mathrm{reflect}(P)$.
+
+								</p>
+								
+
+	       
+							</div>			
+							</div>
+
+							</div>	
+						</section>
+
+						<section data-auto-animate>
+
+							
+							<div >
+								<p style="font-size: 28px;" class="r-frame">
+									    <strong>Theorem</strong> (BHKOPST):  Let \(P\) be a finite lattice, then \(\chi:\mathrm{coreflect}(P)\to \mathrm{End}^o(P)\) is bijective.
+
+
+								</p>
+								
+
+	       
+							</div>	
+							<br>
+							<div class="fragment">
+								<p style="font-size: 28px;" class="r-frame">
+									    <strong>Theorem</strong> (coCharacters): Let \(P\) be a finite lattice, then \(\lambda:\mathrm{reflect}(P)\to \mathrm{End}^c(P)\) is bijective.
+
+								</p>
+								
+
+	       
+							</div>			
+							
+								
+
+						</section>
+
+						<section data-auto-animate>
+
+							
+							<div >
+								<p style="font-size: 28px;" class="r-frame">
+									    <strong>Proposition</strong> (coCharacters):  A factorization system of a finite lattice \(P\), \((L, R)\) is reflective if and only if \((R^\mathrm{op}, L^\mathrm{op})\) is a coreflective factorization system of \(P^\mathrm{op}\).
+
+
+								</p>
+								
+
+	       
+							</div>	
+							<br>
+							<div class="fragment">
+								<p style="font-size: 28px;" class="r-frame">
+									    <strong>Theorem</strong> (coCharacters): We have the following bijections
+
+								</p>
+								
+								<center>
+								<script type="text/tikz">
+								  \begin{tikzpicture}[scale=2]
+							        \node (A1) at (0,2){\Huge $\mathrm{cosat}(P)$};
+							        \node (A2) at (4,2){\Huge $\mathrm{reflect}(P)$};
+							        \node (A3) at (8,2){\Huge $\{\min\{\lambda^{-1}(\lambda^{(L, R)})\} \}$};
+							        \node (A4) at (12,2){\Huge $\mathrm{End}^c(P)$};
+							        \node (B1) at (0,0){\Huge $\mathrm{sat}(P^\mathrm{op})$};
+							        \node (B2) at (4,0){\Huge $\mathrm{coreflect}(P^\mathrm{op})$};
+							        \node (B3) at (8,0){\Huge $\{\max\{\chi^{-1}(\chi^{(R^\mathrm{op}, L^\mathrm{op})})\} \}$};
+							        \node (B4) at (12,0){\Huge $\mathrm{End}^o(P^\mathrm{op})$};
+
+							        \draw[<->] (A1) -- (A2);
+							        \draw[<->] (A2) -- (A3);
+							        \draw[<->] (A3) -- (A4);
+
+							        \draw[<->] (B1) -- (B2);
+							        \draw[<->] (B2) -- (B3);
+							        \draw[<->] (B3) -- (B4);
+
+							        \draw[<->] (A2) -- (B2);
+							    \end{tikzpicture}
+								</script>
+							</center>
+	       
+							</div>			
+							
+								
+
+						</section>
+
+						<section data-auto-animate>
+
+							
+							<div >
+								<p style="font-size: 28px;" class="r-frame">
+									    <strong>Proposition</strong> (coCharacters):  A factorization system of a finite lattice \(P\), \((L, R)\) is reflective if and only if \((R^\mathrm{op}, L^\mathrm{op})\) is a coreflective factorization system of \(P^\mathrm{op}\).
+
+
+								</p>
+								
+
+	       
+							</div>	
+							<br>
+							<div >
+								<p style="font-size: 28px;" class="r-frame">
+									    <strong>Theorem</strong> (coCharacters): We have the following bijections
+
+								</p>
+								
+								<center>
+								<script type="text/tikz">
+								  \begin{tikzpicture}[scale=2]
+							        \node (A1) at (0,2){\Huge $\mathrm{sat}(P)$};
+							        \node (A2) at (4,2){\Huge $\mathrm{coreflect}(P)$};
+							        \node (A3) at (8,2){\Huge $\{\max\{\chi^{-1}(\chi^{(L, R)})\} \}$};
+							        \node (A4) at (12,2){\Huge $\mathrm{End}^o(P)$};
+							        \node (B1) at (0,0){\Huge $\mathrm{cosat}(P^\mathrm{op})$};
+							        \node (B2) at (4,0){\Huge $\mathrm{reflect}(P^\mathrm{op})$};
+							        \node (B3) at (8,0){\Huge $\{\min\{\lambda^{-1}(\lambda^{(R^\mathrm{op}, L^\mathrm{op})})\} \}$};
+							        \node (B4) at (12,0){\Huge $\mathrm{End}^c(P^\mathrm{op})$};
+
+							        \draw[<->] (A1) -- (A2);
+							        \draw[<->] (A2) -- (A3);
+							        \draw[<->] (A3) -- (A4);
+
+							        \draw[<->] (B1) -- (B2);
+							        \draw[<->] (B2) -- (B3);
+							        \draw[<->] (B3) -- (B4);
+
+							        \draw[<->] (A2) -- (B2);
+							    \end{tikzpicture}
+								</script>
+							</center>
+	       
+							</div>			
+							
+								
+
+						</section>
+						
+					</section>
+
+					<section>
+						<section data-auto-animate>
+							<div >
+							<center>
+								<script type="text/tikz">
+								  \begin{tikzpicture}[scale=2.75]
+								    
+								  	\draw[fill, white] (1.5,3) circle (3pt);
+								  	\draw[fill, white] (1.5,-1) circle (4pt);
+
+								  	\draw[fill] (1,3) circle (3pt);
+								  	\draw[fill] (0,2) circle (3pt);
+								    \draw[fill] (1,2) circle (3pt);
+								    \draw[fill] (2,2) circle (3pt);
+								    \draw[fill] (1,1) circle (3pt);
+								    \draw[fill] (3,1) circle (3pt);
+								    \draw[fill] (2,0) circle (3pt);
+
+								    \draw (1,3) -- (0,2) -- (2,0) -- (3,1) -- (1,3);
+								    \draw (1,3) -- (1,1);
+								    \draw (2,2) -- (2,0);
+								    \draw (1,1) -- (2,2);
+
+								  \end{tikzpicture}
+								</script>
+							</center>
+							<p style="font-size: 28px;" >
+								Has 39 saturated and 38 cosaturated transfer systems.
+
+								</p>
+						</div>	
+						</section>
+
+						<section data-auto-animate>
+							<div >
+							<center>
+								<script type="text/tikz">
+								  \begin{tikzpicture}[scale=2.75]
+									\foreach \x in {0,...,3}{
+									    \draw ({-1.5+\x},2)-- (0,3);
+									    \draw ({-1.5+\x},2)-- (1,1);
+									    \draw[fill] ({-1.5+\x},2) circle(3pt);
+									}
+									\draw[fill] (-1,1) circle(3pt);
+									\draw[fill] (1,1) circle(3pt);
+									\draw[fill] (0,0) circle(3pt);
+									\draw[fill] (0,3) circle(3pt);
+
+									\draw (0,0)--(-1,1)--(-1.5,2);
+									\draw (0,0)--(1,1);
+
+									\end{tikzpicture}
+								</script>
+							</center>
+							<p style="font-size: 28px;" >
+								\(\mathrm{Sub}(\mathrm{Dic}_3)\) has 72 saturated and 65 cosaturated transfer systems.
+
+								</p>
+						</div>	
+						</section>
+
+						<section data-auto-animate>
+							<iframe src="https://sagecell.sagemath.org/?z=eJyFVMGK4zAMvS_sPwh6cZgQZtnbQC-7y_SyDD3MrZTgJkrrbSIb22Gmf7-SM0la6GRMIImlJ-npWa6xgaC22dP3b_CxtrCGbeGx1QdsVTYbumT4Zw2VnY7evItxNhObWyQONu9VrQ4Bnr3u8CrDuGpOXpaGTCxLFbBtcsruuI1LPArC98iJHuELv-C0FPTLxIBR7R73OVTa6crEy5qyL8BHpDCDb3AzMkRdndlrl-gpyvazzfZjkfPe28m0OKDukGwkCGOSvXDW3TZ3crMeUgsMgUof1zte0xFVCpUalQNlYBogGyefwSrtWer16sM_QDzh8E22RogWOn1G0CxeZYKxBPrAbIulUM_GB65FEByCrMQkcH04SbyB8ed4wrdy7E6N6CrrLgPHBRkn0Hhg5PXwY0H3VIV2DqlWE_quBjOxV-Yx8bpgAE01nLlGcN5WGIKh4-f4oT45a4Wu66TmAiPR2d4KuKDfbQ5xTjm63XAs7D67M0AreGF5rcdJ3JBDELn4HPCjoeNh7XQLXDR6HZkeD8w98WUAHtZw1XCPsfeUDNLUDWvyx_y-VK2pNt72Tv1k8qE_HOVHpm9TTH8yC41cL7o71BpO-fkJToUJ5eihzuwhF9dfHaOpcGtlcNUUIIcmE8ar4XKre90O8-W8oajkBsz-AwNVRGs=&lang=sage&interacts=eJyLjgUAARUAuQ=="  width="100%" height="700"></iframe>
+						</section>
+
+
+						<section data-auto-animate>
+
+							
+							<div >
+								<p style="font-size: 28px;" class="r-frame">
+									    <strong>Question: </strong> Given a finite lattice \(P\), when is \(|\mathrm{sat}(P)| (<, >, =)|\mathrm{cosat}(P)|\)?  Especially when \(P=\mathrm{Sub}(G)\).
+
+
+								</p>
+								
+
+	       
+							</div>	
+							<br>
+							<div class="fragment">
+								<p style="font-size: 28px;" class="r-frame">
+									    <strong>Question: </strong> Given a finite group \(G\), does an (in)equality between the number of (co)saturated  transfer systems on \(\mathrm{Sub}(G)\) imply the same relation when restricted to \(G\)-transfer systems?  (Converse).  
+
+								</p>
+								
+								
+	       
+							</div>			
+							
+								
+
+						</section>
+						
+					</section>
+
+					<section>
+						<h3>Thank You!</h3>
+						<p style="font-size: 28px;" class="r-frame">
+								I wish to thank the organizers of this session: Devin Hensley, Millie Rose,  Danika Van Niel, Valentia Zapata Castro for their efforts.  The organizers and leaders of the MRC in Homotopical Combinatorics: Scott Balchin, Andrew Blumberg, Mike Hill, Kyle Ormsby, Angélica Osorno, and Constanze Roitzheim for bringing their work to a wider audience and their tutelage.  The AMS and NSF for their support.  Finally and most importantly, my fellow coCharacters Jishnu Bose,  Hannah Housden, Legrand Jones, Chloe Lewis, Kyle Ormsby, and Millie Rose for the good times and good math!
+
+								</p>
+					</section>
+
+					<section>
+						<h2>Any Questions?</h2>	
+						<div class="container">
+							<div class="col">
+							<center>
+								<img src="img/dualChar.gif" width="100%">
+							</center>
+							</div>	
+							<div class="col">
+							<center>
+								<img src="img/dualcoChar.gif" width="100%">
+							</center>
+							</div>	
+						</div>
+							
+					</section>
+
+						
+						
+				<!--<section>
+					<div class="container">
+
+						<div class="col">
+							<img src="img/TienProfile.jpeg" width="100%">
+						</div>
+
+						<div class="col">
+							<ul>
+								<li class="fragment" style="font-size: 35px;">Grew up in Hilo, Hawaii.</li>
+								<li class="fragment" style="font-size: 35px;">Introduced to Math at UH-Hilo by Dr. Ramon Figueroa.</li>
+								<li class="fragment" style="font-size: 35px;">Currently Assistant Professor of Mathematics at MSU-Billings.</li>
+								<li class="fragment" style="font-size: 35px;">I love teaching, cooking, biking, spending time with my family, and MATH!</li>
+							</ul>	
+							
+						</div>
+
+					</div>
+
+
+				</section>-->
+				
+
+
+				<!--<section>
+					
+					<section data-auto-animate>
+						<h3>What are <strong style="color:red;">Graphs</strong>?</h3>
+						
+						
+					</section>
+					
+					
+					
+					<section data-auto-animate>
+						<h3>What are <strong style="color:red;">Graphs</strong>?</h3>
+						<p>
+							A <strong style="color:red;">graph</strong> \(G\) is pair of sets \((V, E)\).
+							Where \(V\) is a set of <strong style="color:red;">vertices</strong>.
+							And \(E\) is a set of <strong style="color:red;">edges</strong> between vertices.
+						</p>
+						<p>
+							<img src="img/C4.svg" width="30%"><br> \(V=\{1,2,3,4\}, E=\{12, 23, 34, 14\}\)
+						</p>
+						
+					</section>
+					
+						
+				</section>	
+
+				<section>
+					
+					<section data-auto-animate>
+						<h3>What is a  <strong style="color:red;">walk</strong>?</h3>
+						
+						
+					</section>
+					
+					<section data-auto-animate>
+						<h3>What is a  <strong style="color:red;">walk</strong>?</h3>
+						<p>
+							Given a <strong style="color:red;">graph</strong> \(G\) a <strong style="color:red;">walk</strong> is a sequence of vertices \(v_0,\ldots, v_n\), such that \(v_i, v_{i+1}\) are adjacent (connected with an edge).
+
+
+							<p style="font-size: 28px;">
+							<img src="img/walkgif.gif" width="30%"><br> The walk \(abcdea\).
+						</p>
+						</p>
+						
+					</section>
+					
+					
+					
+						
+				</section>	
+
+				<section>
+					
+					<section data-auto-animate>
+						<h3>What happens if you <q>backtrack</q>?</h3>
+						
+						
+					</section>
+					
+					<section data-auto-animate>
+						<h3>What happens if you <q>backtrack</q>?</h3>
+						<p>
+							Given a  <strong style="color:red;">walk</strong> \(W=v_0,\ldots, \color{red}{v_{k}, x, v_{k}},\ldots v_n\) a <strong style="color:red;">prune</strong> of \(W\) is a walk: \(v_0,\ldots, \color{red}{v_{k}},\ldots v_n.\)
+
+							<p style="font-size: 28px;">
+							<img src="img/prunegif.gif" width="30%"><br> The walk \(ab\color{red}{cxc}d\mapsto ab\color{red}{c}d\).
+						</p>
+						</p>
+						
+					</section>
+					
+					
+					
+						
+				</section>	
+
+
+				<section>
+					
+					<section data-auto-animate>
+						<h3>Deforming Walks</h3>
+						
+						
+					</section>
+					
+					<section data-auto-animate>
+						<h3>Deforming Walks</h3>
+						<p>
+							A  <strong style="color:red;">spider-move</strong> of a walk  \(v_0,\ldots,v_{k-1}, \color{red}{x},v_{k+1}, \ldots v_n\) replaces \(\color{red}{x}\) with \(\color{red}{y}\): \(v_0,\ldots,v_{k-1}, \color{red}{y},v_{k+1}, \ldots v_n\) so long as \(v_{k-1}\sim y\sim v_{k+1}\).
+
+							<p style="font-size: 28px;">
+							<img src="img/SpiderMoveGif.gif" width="30%"><br> The walk \(ab\color{red}{c}d\mapsto ab\color{red}{x}d\).
+						</p>
+						</p>
+						
+					</section>
+					
+					
+					
+						
+				</section>
+
+				<section>
+					<h3>The Game</h3>
+					<p>
+						Two walks are <q>equivalent</q> \(\equiv\) if:
+
+						<ul>
+								<li class="fragment" style="font-size: 35px;">You can prune (anti-prune) from one walk to the other.</li>
+								<li class="fragment" style="font-size: 35px;">You can spider-move between the walks.</li>
+								<li class="fragment" style="font-size: 35px;">(The endpoints of the walk are fixed.)</li>
+								
+							</ul>
+					</p>		
+
+				</section>	
+
+
+				<section>
+					<img src="img/ContractibleWalk.svg" width="35%"><br>
+
+					<p>
+						Can I find a shorter equivalent walk to \(dghif\)?
+						<ol>
+							<li style="font-size: 20px;">Delete (add) backtracks.</li>
+							<li style="font-size: 20px;">Spider-Move.</li>
+							<li style="font-size: 20px;">Fix endpoints.</li>
+						</ol>	
+					</p>
+
+
+				</section>
+
+				<section>
+					<img src="img/shortergif.gif" width="35%"><br>
+
+					<p>
+						\(dghif\equiv def\).
+					</p>	
+
+				</section>	
+
+
+				<section>
+					<img src="img/nonContractibleWalk.svg" width="35%"><br>
+
+					<p>
+						Can I find a shorter equivalent walk to \(dabcf\)?
+						<ol>
+							<li style="font-size: 20px;">Delete (add) backtracks.</li>
+							<li style="font-size: 20px;">Spider-Move.</li>
+							<li style="font-size: 20px;">Fix endpoints.</li>
+						</ol>	
+					</p>	
+
+				</section>
+
+
+				<section>
+					<section data-auto-animate>
+						<p>
+							<img src="img/Concact1.svg" width="30%"><img src="img/Concact2.svg" width="30%"><img src="img/Concact3.svg" width="30%"><br>
+
+							\(\color{blue}{abx}*\color{red}{xcde}=\color{purple}{abxcde}.\)
+
+						</p>	
+
+					</section>
+
+					<section data-auto-animate>
+						
+
+						<p>
+							<img src="img/Concact1.svg" width="30%"><img src="img/Concact2.svg" width="30%"><img src="img/Concact3.svg" width="30%"><br>
+
+							\(\color{blue}{abx}*\color{red}{xcde}=\color{purple}{abxcde}.\)
+
+						</p>	
+
+						<p>
+							Given walks \(W=v_0,\ldots, \color{red}{v_n}, U=\color{red}{v_n}, w_1, \ldots, w_m\), the <strong style="color:red;">concactenation</strong>  of \(W\) and \(U\) is \(W*U=v_0,\ldots,\color{red}{v_n},\ldots, w_m.\)
+						</p>
+
+					</section>
+
+				</section>
+
+
+				<section>
+
+					<img src="img/Contract.svg" width="45%">
+
+					<p>
+						Can you find a shorter walk equivalent to \(W=abcdea\)?
+					</p>	
+
+
+				</section>
+
+				<section>
+
+					<img src="img/AlmostTorsion.gif" width="45%">
+
+					<p>
+						\(abcdea\equiv abxa.\)
+					</p>	
+
+
+				</section>
+
+				<section>
+
+					<img src="img/Contract.svg" width="45%">
+
+					<p>
+						Can you find a shortest walk equivalent to \(W^2=abcdeabcdea\)?
+					</p>	
+
+
+				</section>
+
+				<section>
+
+					<section data-auto-animate>
+						<img src="img/step1.svg" width="45%" data-id="image">
+
+						<p data-id="prose">
+							\[W^2\equiv \color{red}{abcdea}*\color{blue}{abcdea}\]
+
+						</p>	
+					</section>
+
+					<section data-auto-animate>
+						<img src="img/step2.svg" width="45%" data-id="image">
+
+						<p data-id="prose">
+							\[W^2\equiv \color{red}{abcdea}*\color{blue}{abcdea}\equiv \color{red}{abxa}*\color{blue}{abcdea}\]
+
+						</p>	
+					</section>	
+					<section data-auto-animate>
+						<img src="img/step3.svg" width="45%" data-id="image">
+
+						<p data-id="prose">
+							\[W^2\equiv\color{red}{abxa}*\color{blue}{abcdea}\equiv \color{red}{abxa}*\color{blue}{axea}\]
+
+
+						</p>	
+					</section>	
+
+					<section data-auto-animate>
+						<img src="img/step4.svg" width="45%" data-id="image">
+
+						<p data-id="prose">
+							\[W^2\equiv \color{red}{ab\underline{xa}}\color{blue}{\underline{x}ea}\equiv \color{red}{ab\underline{x}}\color{blue}{ea}\]
+							
+
+						</p>	
+					</section>	
+
+					<section data-auto-animate>
+						<img src="img/step5.svg" width="45%" data-id="image">
+
+						<p data-id="prose">
+							\[W^2\equiv \color{red}{ab\underline{x}}\color{blue}{ea}\equiv \color{red}{ab\underline{a}}\color{blue}{ea}\]
+							
+
+						</p>	
+					</section>	
+
+					<section data-auto-animate>
+						<img src="img/step6.svg" width="45%" data-id="image">
+
+						<p data-id="prose">
+							\[W^2\equiv \color{red}{\underline{aba}}\color{blue}{ea}\equiv \color{red}{\underline{a}}\color{blue}{ea}\]
+							
+
+						</p>	
+					</section>	
+
+					<section data-auto-animate>
+						<img src="img/step7.svg" width="45%" data-id="image">
+
+						<p data-id="prose">
+							\[W^2\equiv \color{red}{\underline{a}}\color{blue}{\underline{ea}}\equiv \underline{a}!\]
+							
+
+						</p>	
+					</section>	
+
+					
+
+
+				</section>
+
+				
+				
+				
+				<section>
+					<section data-auto-animate>
+						<h3>What is <strong class="fragment fade-out">\(\times\)-</strong>Homotopy?</h3>
+					</section>
+
+					
+				
+					<section data-auto-animate>
+						<h3>Definition of Homotopy</h3>
+					</section>
+					<section data-auto-animate>
+						<h3>Definition of Homotopy</h3>
+						<p>\(f, g:X\to Y\) are <strong style="color:blue;">homotopic</strong> </p>
+					</section>
+					
+					<section data-auto-animate>
+						<h3>Definition of Homotopy</h3>
+						<p>\(f, g:X\to Y\) are <strong style="color:blue;">homotopic</strong> </p>
+						<p>if there is a   \(\varphi:X\times [0,1]\to Y\) </p>
+						
+					</section>
+					
+					<section data-auto-animate>
+						<h3>Definition of Homotopy</h3>
+						<p>\(f, g:X\to Y\) are <strong style="color:blue;">homotopic</strong> </p>
+						<p>if there is a   \(\varphi:X\times [0,1]\to Y\) </p>
+						<p>such that  \(\varphi|_{(-,0)}=f\) and \(\varphi|_{(-,1)}=g\).</p>
+						
+					</section>
+					
+					<section data-auto-animate>
+						<h3>Definition of Homotopy</h3>
+						<p>\(f, g:X\to Y\) are <strong style="color:blue;">homotopic</strong> </p>
+						<p>if there is a   \(\varphi:X\times [0,1]\to Y\) </p>
+						<p>such that  \(\varphi|_{(-,0)}=f\) and \(\varphi|_{(-,1)}=g\).</p>
+						<img src="img/tophomotopy.svg" width="70%">
+					
+					<p class="fragment">
+						\(\varphi|_{(-,i)}:X\to Y\) at <q>time</q> \(i\).
+					</p>
+					</section>
+					
+
+				
+				
+				
+				</section>
+				
+				
+				
+				
+				
+				<section>
+					
+					<section data-auto-animate>
+						<p>How do we move from the continuous world of <strong style="color:blue;">Topology</strong> to the discrete world of <strong style="color:red;">Graphs</strong>?</p>
+						
+					</section>
+					
+					<section data-auto-animate>
+						<p style="opacity: 0.3; font-size: 18px;">How do we move from the continuous world of <strong style="color:blue;">Topology</strong> to the discrete world of <strong style="color:red;">Graphs</strong>?</p>
+						<div class="container">
+
+						<div class="col" data-id="Top">
+							<p>In <strong style="color:blue;">Topology</strong>, <strong>continuous functions</strong> preserve <strong style="color:blue;">convergence</strong>.</p>
+							<img src="img/contfunc.svg" width="50%">
+						</div>
+
+							
+							
+						</div>
+					</section>
+					
+					<section data-auto-animate>
+						<p style="opacity: 0.3; font-size: 18px;">How do we move from the continuous world of <strong style="color:blue;">Topology</strong> to the discrete world of <strong style="color:red;">Graphs</strong>?</p>
+						<div class="container">
+
+						<div class="col" data-id="Top">
+							<p>In <strong style="color:blue;">Topology</strong>, <strong>continuous functions</strong> preserve <strong style="color:blue;">convergence</strong>.</p>
+							<img src="img/contfunc.svg" width="80%">
+						</div>
+
+						<div class="col" data-id="Graph">
+							<p>In <strong style="color:red;">Graph Theory</strong>, <strong>graph homomorphisms</strong> preserve <strong style="color:red;">adjacency</strong>.</p>
+							<img src="img/graphhom.svg" width="80%">
+						</div>
+							
+							
+						</div>
+					</section>
+					
+					<section data-auto-animate>
+						
+						<div class="container">
+
+						
+
+						<div class="col" data-id="Graph">
+							<p >In <strong style="color:red;">Graph Theory</strong>, <strong>graph homomorphisms</strong> preserve <strong style="color:red;">adjacency</strong>.</p>
+							<img src="img/graphhom.svg" width="35%">
+						</div>
+							
+							
+						</div>
+						
+						<p>
+							A <strong style="color:red;">Graph Homomorphism</strong> \(f:G\to H\) is a vertex map where \(f(v)f(w)\) whenever \(vw\).
+						</p>
+						
+					</section>
+					
+				</section>
+				
+				
+				
+				
+				<section>
+					
+					
+					<section data-auto-animate>
+						
+						<div class="container">
+
+						<div class="col" data-id="Top">
+							<p>In <strong style="color:blue;">Topology</strong>, the product is the cartesian product with the  <strong style="color:blue;">product topology</strong>.</p>
+							<img src="img/topprod.svg" width="50%">
+						</div>
+							
+
+							
+							
+						</div>
+					</section>
+					
+					
+					
+					<section data-auto-animate>
+						
+						<div class="container">
+
+						<div class="col" data-id="Top">
+							<p>In <strong style="color:blue;">Topology</strong>, the product is the cartesian product with the  <strong style="color:blue;">product topology</strong>.</p>
+							<img src="img/topprod.svg" width="80%">
+						</div>
+							
+						<div class="col" data-id="Graph">
+							<p>In <strong style="color:red;">Graph Theory</strong>, the product is the <strong style="color:red;">product graph</strong>.</p>
+							<img src="img/graphprod.svg" width="80%">
+						</div>
+
+							
+							
+						</div>
+					</section>
+					
+					
+					<section data-auto-animate>
+						
+						<div class="container">
+
+						
+							
+						<div class="col" data-id="Graph">
+							<p>In <strong style="color:red;">Graph Theory</strong>, the product is the <strong style="color:red;">product graph</strong>.</p>
+							<img src="img/graphprod.svg" width="35%">
+						</div>
+
+							
+							
+						</div>
+						
+						<p>
+							The <strong style="color:red;">Graph Product</strong> \(G\times H\) is the cartesian products of the vertices of  \(G, H\) where \((v_1, w_1)\sim (v_2, w_2)\) whenever \(v_1\sim w_2\) and \(v_2\sim w_1\).
+						</p>
+						
+					</section>
+					
+					
+				</section>
+				
+				<section>
+					
+					
+					<section data-auto-animate>
+						
+						<div class="container">
+
+						<div class="col" data-id="Top">
+							<p>In <strong style="color:blue;">Topology</strong>, we have the  <strong style="color:blue;">unit interval</strong>.</p>
+							<img src="img/interval.svg" width="50%">
+						</div>
+							
+
+							
+							
+						</div>
+					</section>
+					
+					
+					
+					<section data-auto-animate>
+						
+						<div class="container">
+
+						<div class="col" data-id="Top">
+							<p>In <strong style="color:blue;">Topology</strong>, we have the  <strong style="color:blue;">unit interval</strong>.</p>
+							<img src="img/interval.svg" width="80%">
+						</div>
+							
+						<div class="col" data-id="Graph">
+							<p>In <strong style="color:red;">Graph Theory</strong>, we have the <strong style="color:red;">interval graph</strong>.</p>
+							<img src="img/intervalgraph.svg" width="80%">
+						</div>
+
+							
+							
+						</div>
+					</section>
+					
+				</section>
+				
+				
+				<section>
+					
+					<section data-auto-animate>
+						
+						<div class="container">
+
+						<div class="col" data-id="Top">
+							<p>\(f, g\) are <strong style="color:blue;">homotopic</strong>, if there is <br> \(\varphi:X\times [0,1]\to Y\) <br> where \(\varphi|_{(-,0)}=f, \varphi|_{(-,1)}=g\).</p>
+							<img src="img/tophomotopy.svg" width="50%">
+						</div>
+
+							
+							
+						</div>
+					</section>					
+					<section data-auto-animate>
+						
+						<div class="container">
+
+						<div class="col" data-id="Top">
+							<p>\(f, g\) are <strong style="color:blue;">homotopic</strong>, if there is <br> \(\varphi:X\times [0,1]\to Y\) <br> where \(\varphi|_{(-,0)}=f, \varphi|_{(-,1)}=g\).</p>
+							<img src="img/tophomotopy.svg" width="80%">
+						</div>
+							
+						<div class="col" data-id="Graph">
+							<p>\(f, g\) are <strong style="color:red;">\(\times\)-homotopic</strong>, if there is <br> \(\varphi:G\times I_n\to H\) <br> where \(\varphi|_{(-,0)}=f, \varphi|_{(-,n)}=g\).</p>
+							<img src="img/graphhomotopy.svg" width="80%">
+						</div>
+
+							
+							
+						</div>
+					</section>
+					
+				</section>
+				
+				
+				<section>
+					
+					<section data-auto-animate>
+						<h3 data-id="Caption">So is <strong style="color:red;">\(\times\)-homotopy</strong> just the same as <strong style="color:blue;">homotopy</strong>?</h3>
+						
+					</section>
+					
+					<section data-auto-animate>
+						<h3 data-id="Caption" style="opacity: 0.3; font-size: 20px;">So is <strong style="color:red;">\(\times\)-homotopy</strong> just the same as <strong style="color:blue;">homotopy</strong>?</h3>
+						
+						<div class="container">
+							
+							<div class="col" data-id="Prod">
+								<img src="img/graphprod.svg" width="40%">
+								<p><strong style="color:red;">Graph Products</strong> of connected graphs can be disconnected!</p>
+							</div>
+
+							
+						</div>
+						
+						
+					</section>
+					
+					<section data-auto-animate>
+						<h3 data-id="Caption" style="opacity: 0.3; font-size: 20px;">So is <strong style="color:red;">\(\times\)-homotopy</strong> just the same as <strong style="color:blue;">homotopy</strong>?</h3>
+						
+						<div class="container">
+							
+							<div class="col" data-id="Prod">
+								<img src="img/graphprod.svg" width="35%">
+								<p><strong style="color:red;">Graph Products</strong> of connected graphs can be disconnected!</p>
+							</div>
+
+							<div class="col" data-id="Cont">
+								<img src="img/graphhomotopy.svg" width="80%">
+								<p><strong style="color:red;">\(\times\)-Homotopy</strong> is fundamentally discrete!</p>
+							</div>
+						</div>
+						
+						
+					</section>
+				</section>
+				
+				
+				
+				
+				<section>
+					
+					<section data-auto-animate>
+						<p class="caption">Initial groundwork has been laid by Dochtermann (2009) and Kozolov (2006, 2007) on <strong style="color:red;">\(\times\)-homotopy</strong>.  </p>
+					
+						
+					</section>
+					
+					<section data-auto-animate>
+						<p class="caption">Initial groundwork has been laid by Dochtermann (2009) and Kozolov (2006, 2007) on <strong style="color:red;">\(\times\)-homotopy</strong>.  </p>
+					
+						<div class="container">
+
+								<div class="col" data-id="Prod">
+									<img src="img/TienProfile.jpeg" height="200">
+									<p>Tien Chih<br> Graph Theorist</p>
+								</div>
+
+								<div class="col" data-id="Cont">
+									<img src="img/LS.jpeg" height="200">
+									<p>Laura Scull<br> Homotopy Theorist</p>
+								</div>
+							</div>
+					</section>
+					
+					<section data-auto-animate>
+						<p class="caption" style="opacity: 0.3; font-size: 20px;">Initial groundwork has been laid by Dochtermann (2009) and Kozolov (2006, 2007) on <strong style="color:red;">\(\times\)-homotopy</strong>.  </p>
+					
+						<div class="container">
+
+								<div class="col" data-id="Prod">
+									<img src="img/TienProfile.jpeg" height="200">
+									<p>Tien Chih<br> Graph Theorist</p>
+								</div>
+
+								<div class="col" data-id="Cont">
+									<img src="img/LS.jpeg" height="200">
+									<p>Laura Scull<br> Homotopy Theorist</p>
+								</div>
+							</div>
+						<p>Project: Take <strong style="color:blue;">homotopy</strong> concepts and find their <br> <strong style="color:red;">\(\times\)-homotopy</strong> analogues if any.</p>
+					</section>
+				</section>
+				
+				<section>
+					
+					<section data-auto-animate>
+						<h3>What <q>is</q> <strong style="color:red;">\(\times\)-homotopy</strong>?</h3>
+						
+						
+						
+					</section>
+					
+					
+					<section data-auto-animate>
+						<h3>What <q>is</q> <strong style="color:red;">\(\times\)-homotopy</strong>?</h3>
+						<div class="container">
+
+								<div class="col" data-id="Top">
+									<img src="img/Homotopy.gif" height="400">
+									<p><strong style="color:blue;">homotopic</strong></p>
+								</div>
+
+								
+							</div>
+						
+						
+					</section>
+					
+					
+					<section data-auto-animate>
+						<h3>What <q>is</q> <strong style="color:red;">\(\times\)-homotopy</strong>?</h3>
+						<div class="container">
+
+								<div class="col" data-id="Top">
+									<img src="img/Homotopy.gif" height="200">
+									<p><strong style="color:blue;">homotopic</strong></p>
+								</div>
+
+								<div class="col" data-id="Graph">
+									<img src="img/SpiderGif.gif" height="200">
+									<p><strong style="color:red;">\(\times\)-homotopic</strong></p>
+								</div>
+							</div>
+						
+						
+					</section>
+					
+					
+					<section data-auto-animate>
+						<h3>What <q>is</q> <strong style="color:red;">\(\times\)-homotopy</strong>?</h3>
+						<div class="container">
+
+
+								<div class="col" data-id="Graph">
+									<img src="img/SpiderGif.gif" height="200">
+									<p><strong style="color:red;">\(\times\)-homotopic</strong></p>
+								</div>
+							</div>
+						
+						<p style="font-size: 28px;" class="r-frame"><strong>Lemma</strong> <q>Spider Lemma</q> (CS, 2021): <br> Let \(G\) be a finite graph.  Two graph homomorphisms \(f, g:G\to H\) are <strong style="color:red;">\(\times\)-homotopic</strong> if and ony if there is a sequence of graph homomorphisms \(f_0=f, f_1, \ldots, f_n=g\) such that for any \(f_{i}, f_{i+1}\) there is at most one \(v\in V(G)\) where \(v_i(v)\neq f_{i+1}(v)\).</p>
+						
+					</section>
+				
+				</section>
+				
+				<section>
+					
+					
+					<section>
+						<div class="r-frame">
+							<p style="font-size: 28px;" ><strong>Theorem</strong> (C-Scull, 2021): <br> We can define a 2-category of graphs as follows: 
+							<ul style="font-size: 28px;" >
+								<li>Objects [0-cells] are given by objects of \(\mathsf{Gph}\), the finite undirected graphs. </li>
+								<li>Morphisms [1-cells] are given by the morphisms of \(\mathsf{Gph}\), the graph homomorphisms.</li>
+								<li>2-cells are defined as homotopies between morphisms. </li>
+							</ul>
+							</p>
+						</div>
+					<br>
+						<div class="fragment">
+							<div class="r-frame">
+								<p style="font-size: 28px;" ><strong>Theorem</strong> (C-Scull, 2021):<br>  \(\mathsf{hGph}\), the category created from \(\mathsf{Gph}\)  by identifying  2-cells, is the homotopy category for \(\mathsf{Gph}\).
+								</p>
+								<img src="img/hGph.svg" width="20%">
+							</div>
+						</div>
+						
+						
+					</section>
+					
+					
+					
+				
+					<section data-auto-animate>
+						<div class="r-frame" data-id="def">
+							<p style="font-size: 28px;" ><strong>Definition</strong> (C-Scull, 2022): <br> The <strong>fundamental group(oid)</strong> of a graph \(G\) denoted \(\Pi(G)\) is the collection of <strong style="color:red;">\(\times\)-homotopic</strong> closed walks (walks).
+							</p>
+						</div>
+						
+						
+					</section>
+				
+					<section data-auto-animate>
+						<div class="r-frame" data-id="def">
+							<p style="font-size: 28px;" ><strong>Definition</strong> (C-Scull, 2022): <br> The <strong>fundamental group(oid)</strong> of a graph \(G\) denoted \(\Pi(G)\) is the collection of <strong style="color:red;">\(\times\)-homotopic</strong> closed walks (walks).
+							</p>
+						</div>
+						
+						<div class="container">
+
+								<div class="col" data-id="group">
+									<img src="img/PiG.gif" width="25%">
+									<p>Walks starting from \(a\).</p>
+								</div>
+
+								
+							</div>
+						
+					</section>
+					
+					<section data-auto-animate>
+						<div class="r-frame" data-id="def">
+							<p style="font-size: 28px;" ><strong>Definition</strong> (C-Scull, 2022): <br> The <strong>fundamental group(oid)</strong> of a graph \(G\) denoted \(\Pi(G)\) is the collection of <strong style="color:red;">\(\times\)-homotopic</strong> closed walks (walks).
+							</p>
+						</div>
+						
+						<div class="container">
+
+								<div class="col" data-id="group">
+									<img src="img/PiG.gif" width="50%">
+									<p>Walks starting from \(a\).</p>
+								</div>
+
+								<div class="col" data-id="torsion">
+									<img src="img/Torsion.gif" width="50%">
+									<p>A \(\Pi(G)\) with torsion.</p>
+								</div>
+							</div>
+						
+					</section>
+				
+				
+					<section>
+						<div class="r-frame">
+							<p style="font-size: 28px;" ><strong>Theorem</strong> (C-Scull, 2022): <br> \(\Pi\) defines a  functor from the homotopy category  of graphs \(\mathsf{hGph}\) to the category of groupoids and functors up to natural isomorphism.
+							</p>
+						</div>
+						
+						
+						
+					</section>
+				
+				
+					<section>
+
+						<img src="img/HomotopyLift.gif" width="60%">
+						<div class="r-frame">
+								<p style="font-size: 28px;" ><strong>Definition</strong>  (C-Scull, 2022):  <br> A graph morphism between   graphs  \(f:\widetilde{G}\to G\) is a <strong style="color:red;">homotopy covering map</strong> if given any \(v\) in \(G\) and \(\tilde{v}\in f^{-1}(v)\), walks of length 2 starting at \(v\) lift bijectively to walks of length 2 starting at \(\tilde{v}\) in a way that preserves endpoints.
+								</p>
+						</div>
+					</section>
+
+					<section>
+
+						
+						<div class="r-frame">
+								<p style="font-size:28px;" ><strong>Theorem</strong>  (C-Scull, 2022):  Let  \() f: \widetilde{G}\to G\) be a homotopy covering map, and \(\phi, \psi:K\to G\) which are homotopic via  \(H:K \times I_n \to G\).    Suppose \(\phi\) lifts to a map  \(\tilde{\phi}:K\to \widetilde{G}\) s.t. \(\phi=f \circ \widetilde{\phi}\).  Then there is a lift \(\widetilde{H}:K \times I_n \to \widetilde{G} \) s.t. \(\tilde{H}|_{K \times \{0\}} = \widetilde{\phi} \)   and \( f \circ \widetilde{H} = H\).  In particular,  \({\tilde{H}}|_{K \times \{n\}} = \widetilde{\psi} \) is a lift of \(\psi\) s.t. \( \widetilde{\phi} \simeq \widetilde{\psi} \).  
+
+								</p>
+
+
+						</div>
+
+						<p>
+							<img src="img/tikzdiagram.svg" width="40%">
+						</p>
+					</section>
+
+					<section>
+
+						
+						<div class="r-frame">
+								<p style="font-size:28px;" ><strong>Proposition</strong>  (C-Scull, 2023):  Let \(G\) be a connected graph and \(f:\tilde{G}\to G\) be a cover.  Let \(\varphi:K\to G\) such that \(\varphi_*(\Pi(K))\subseteq f_*(\Pi(\tilde{G}))\), then \(\varphi\) lifts to \(\tilde{\varphi}:K\to \tilde{G}\) such that \(\varphi=f\circ\tilde{\varphi}\).
+
+								</p>
+
+
+						</div>
+						<p>
+							<img src="img/tikzdiagram2.svg" width="40%">
+						</p>
+
+						
+					</section>
+				
+					<section>
+
+						<div class="r-frame">
+								<p style="font-size: 28px;" ><strong>Definition</strong>  (C-Scull, 2022):  <br> Given a connected graph \(G\), its  <strong style="color:red;">universal cover</strong> is a graph \(U\) whose vertices are elements of  \(\Pi(G)\).  Walks are adjacent if they differ by one <q>step</q>.  <br><br> \(\rho:U\to G\) mapping a walk to its endpoint is the <strong style="color:red;">covering map</strong>.
+								</p>
+						</div>
+						<img src="img/Universal Cover.gif" width="60%">
+
+					</section>
+
+					
+
+					<section>
+
+						<div class="r-frame">
+								<p style="font-size: 28px;" ><strong>Definition</strong>  (C-Scull, 2022):  <br> Given a connected graph \(G\), its  <strong style="color:red;">universal cover</strong> is a graph \(U\) whose vertices are elements of  \(\Pi(G)\).  Walks are adjacent if they differ by one <q>step</q>.  <br><br> \(\rho:U\to G\) mapping a walk to its endpoint is the <strong style="color:red;">covering map</strong>.
+								</p>
+						</div>
+						<img src="img/UCW6.svg" width="80%">
+
+					</section>
+				
+					<section>
+
+						<div class="r-frame">
+								<p style="font-size: 28px;" ><strong>Theorem</strong>  (C-Scull, 2022):  <br> Suppose that  \(f:\widetilde{G}\to G\) is a <strong style="color:red;">\(\times\)-homotopy cover</strong> and   \(\tilde{v}\in f^{-1}(v)\).  Then there is a unique map  \(\tilde{\rho}: U\to \widetilde{G}\) such that \(\rho=f\circ\tilde{\rho}\) and \(\tilde{\rho}([v])=\tilde{v}\), and the map \(\tilde{\rho}\) is a <strong style="color:red;">\(\times\)-homotopy cover</strong>.
+								</p>
+						</div>
+						
+						<br>
+						
+						<div class="fragment">
+							<div class="r-frame">
+								<p style="font-size: 28px;" ><strong>Theorem</strong>  (C-Scull, 2022):  <br> \(\tilde{G}\) is a <strong style="color:red;">\(\times\)-homotopy cover</strong> of \(G\) if and only if it is isomorphic to a graph quotient of \(U\).
+								</p>
+							</div>
+								
+						</div>
+						
+
+					</section>
+
+					<section>
+						<h3>Award Winning Student Work!</h3>
+						<p style="font-size: 28px;" class="r-frame" data-id="thm"><strong>Theorem</strong> (Behal, C):  <br> 
+						$\Pi(H(n,3))\cong \mathbb{Z}^n$, and  $\Pi(H(n,k))\cong \mathbb{Z}_2^n$ when $k\neq 3$.
+						</p>
+
+						
+						<img src="img/GWGenerate.gif" width="50%"><img src="img/GWCommute.gif" width="45%">
+						
+					</section>
+						
+				
+				
+				</section>
+
+			</section>
+			
+			
+			<section>
+				<section data-auto-animate> 
+					<h2>Unfortunately...</h2>
+					<div class="r-frame">
+								<p style="font-size: 28px;" ><strong>Definition</strong>  (Matsushita, 2017):  Let \(W_1, W_2\) be walks of equal length in \(G\) from \(v_0\) to \(v_n\), and let \(r\geq 2\) be an integer.  Consider the relation \(W_1\sim W_2\) if they differ by at most \(r\) vertices.  We call the equivalnce relationship generated by this equivalence <strong style="color:red;"> \(r\)-homotopy</strong>.
+								</p>
+					</div>
+					<div class="fragment">
+								<p style="font-size: 28px;" ><strong>Definition</strong>  2-homotopy is equivalent to \(\times\)-homotopy.
+								</p>
+					</div>
+				</section>
+
+				<section data-auto-animate> 
+					<h2>Unfortunately...</h2>
+					<div class="r-frame">
+								<p style="font-size: 28px;" ><strong>Neat Result</strong>  (Matsushita, 2017):  For any \(k>0\), there is no homomorphism from \(KG_{2k+1, k}\) to \(C_5\).
+								</p>
+					</div>
+					<ul>
+						<li style="font-size: 28px;" class="fragment">\(\pi_3(C_5)\cong \mathbb{Z}\).</li>
+						<li style="font-size: 28px;" class="fragment">\(\pi_3(KG_{2k+1, k})\cong \mathbb{Z}/2\).</li>
+						<li style="font-size: 28px;" class="fragment">No surjective homomorphism from \(\mathbb{Z}/2\to \mathbb{Z}\).</li>
+					</ul>
+				</section>
+				
+				
+				
+		</section>
+		
+		
+		<section>
+			<h3>What now?</h3>
+			<ul>
+				<li style="font-size: 28px;">Deeper connection to the categorical realization of \(\times\)-homotopy.</li>
+				<li style="font-size: 28px;">Connection between median/modular graphs and box products with the fundamental group.</li>
+				<li style="font-size: 28px;">Looking into Leighton Theorem type results.</li>
+
+			</ul>
+		</section>
+
+
+			
+		</section>
+		
+		<section>
+		<h2>Thank you!</h2>
+			<img src="img/SpiderGif.gif" width="80%" data-id="Null">
+		<h3>Any Questions?</h3>	
+		</section>-->
+			
+		
+				
+				
+				
+					
+				
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+		<script src="plugin/math/math.js"></script>
+		<script src="plugin/chalkboard/plugin.js"></script>
+		<script src="plugin/customcontrols/plugin.js"></script>
+
+
+
+	<script>
+  	Reveal.initialize({
+		math: {
+			mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+			config: 'TeX-AMS_HTML-full',
+			// pass other options into `MathJax.Hub.Config()`
+			TeX: { Macros: { RR: "{\\bf R}" } }
+		},
+
+		chalkboard: {
+        boardmarkerWidth: 3,
+        chalkWidth: 7,
+        chalkEffect: 1.0,
+        storage: null,
+        src: null,
+        readOnly: undefined,
+        transition: 800,
+        theme: "chalkboard",
+        background: [ 'rgba(127,127,127,.1)' , path + 'img/blackboard.png' ],
+        grid: { color: 'rgb(50,50,10,0.5)', distance: 80, width: 2},
+        eraser: { src: path + 'img/sponge.png', radius: 20},
+        boardmarkers : [
+                { color: 'rgba(100,100,100,1)', cursor: 'url(' + path + 'img/boardmarker-black.png), auto'},
+                { color: 'rgba(30,144,255, 1)', cursor: 'url(' + path + 'img/boardmarker-blue.png), auto'},
+                { color: 'rgba(220,20,60,1)', cursor: 'url(' + path + 'img/boardmarker-red.png), auto'},
+                { color: 'rgba(50,205,50,1)', cursor: 'url(' + path + 'img/boardmarker-green.png), auto'},
+                { color: 'rgba(255,140,0,1)', cursor: 'url(' + path + 'img/boardmarker-orange.png), auto'},
+                { color: 'rgba(150,0,20150,1)', cursor: 'url(' + path + 'img/boardmarker-purple.png), auto'},
+                { color: 'rgba(255,220,0,1)', cursor: 'url(' + path + 'img/boardmarker-yellow.png), auto'}
+        ],
+        chalks: [
+                { color: 'rgba(255,255,255,0.5)', cursor: 'url(' + path + 'img/chalk-white.png), auto'},
+                { color: 'rgba(96, 154, 244, 0.5)', cursor: 'url(' + path + 'img/chalk-blue.png), auto'},
+                { color: 'rgba(237, 20, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-red.png), auto'},
+                { color: 'rgba(20, 237, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-green.png), auto'},
+                { color: 'rgba(220, 133, 41, 0.5)', cursor: 'url(' + path + 'img/chalk-orange.png), auto'},
+                { color: 'rgba(220,0,220,0.5)', cursor: 'url(' + path + 'img/chalk-purple.png), auto'},
+                { color: 'rgba(255,220,0,0.5)', cursor: 'url(' + path + 'img/chalk-yellow.png), auto'}
+        ]
+    },
+    customcontrols: {
+  		controls: [
+  			{ icon: '<i class="fa fa-pen-square"></i>',
+  			  title: 'Toggle chalkboard (B)',
+  			  action: 'RevealChalkboard.toggleChalkboard();'
+  			},
+  			{ icon: '<i class="fa fa-pen"></i>',
+  			  title: 'Toggle notes canvas (C)',
+  			  action: 'RevealChalkboard.toggleNotesCanvas();'
+  			}
+  		]
+    },
+
+		plugins: [ RevealMath, RevealChalkboard, RevealCustomControls, RevealMenu  ]
+		});
+	</script>
+
+	</body>
+</html>
