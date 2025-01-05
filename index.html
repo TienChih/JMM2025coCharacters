@@ -142,7 +142,7 @@
 						<section data-auto-animate>
 						<div class="r-frame">
 							<p style="font-size: 28px;">
-								<strong>Definition</strong>: Given a finite lattice \((P, \leq)\), a <strong style="color:red;">transfer system</strong> is an order relation \(R\) which refines \( \leq \), includes all identities, and is closed under pullback.
+								<strong>Definition</strong>: Given a finite lattice \((P, \leq)\), a <strong style="color:red;">transfer system</strong> is an order relation \(R\) which refines \( \leq \), includes all identities, and is closed under pullback and composition.
 							</p>
 							<p style="font-size: 28px;" class="fragment">
 								\[x\leq z, y~R~z \Rightarrow x\wedge y~R~y\] 
@@ -176,11 +176,11 @@
 						<div >
 							<center>
 								<script type="text/tikz">
-								  \begin{tikzpicture}[scale=3]
-								    \node (A) at (0,2){\Huge $A$};
-								    \node (B) at (2,2){\Huge $X$};
+								  \begin{tikzpicture}[scale=6]
+								    \node (A) at (0,1){\Huge $A$};
+								    \node (B) at (1,1){\Huge $X$};
 								    \node (C) at (0,0){\Huge $B$};
-								    \node (D) at (2,0){\Huge $Y$};
+								    \node (D) at (1,0){\Huge $Y$};
 
 								    \draw[->, thick] (A) --node[above]{\Large $ f$} (B);
 								    \draw[->, thick] (C) --node[below]{\Large  $g$} (D);
@@ -377,7 +377,7 @@
 							<h4>Factorization Systems</h4>
 							
 							<p style="font-size: 28px;">
-								    Via (FOOQW, 22):
+								    Via (FOOQW, 2022):
 
 							</p>
 							<div>
@@ -421,6 +421,87 @@
        
 							</div>	
 						</section>	
+
+						<section data-auto-animate>
+							
+							<div >
+							<p style="font-size: 28px;" class="r-frame">
+								    <strong>Lemma (coCharacters): </strong>	Let \(P\) be a finite lattice, \((L, R)\) a factorization system on \(P\).  Then \(\chi^{(L, R)}(x)=\max\{y:0~L~y\leq x\}\) and \(\lambda^{(L, R)}(x)=\max\{y:x~L~y\}\).
+
+							</p>
+							
+
+       
+							</div>	
+
+							<div>
+								<center>
+									<script type="text/tikz">
+									  \begin{tikzpicture}[scale=6]
+									    \node (A) at (0,1){\Huge $0$};
+									    \node (B) at (1,1){\Huge $\chi(x)$};
+									    \node (C) at (0,0){\Huge $y'$};
+									    \node (D) at (1,0){\Huge $x$};
+
+									    \draw[->, thick] (A) -- (B);
+									    \draw[->, thick] (C) --  (D);
+									    \draw[->, thick, red] (B) -- node[right]{\Large R} (D);
+									    \draw[->, thick, blue] (A) --  node[left]{\Large L} (C);
+									    \draw[->, thick, dashed]  (C)--  (B);
+									\end{tikzpicture}
+									</script>
+								</center>
+								<p style="font-size: 28px;" >
+								    \[\chi(x) = \min\{y: y~R~x\}\]
+
+							</p>
+							</div>
+														
+						</section>	
+
+
+						<section data-auto-animate>
+							
+							<div >
+							<p style="font-size: 28px;" class="r-frame">
+								    <strong>Lemma (coCharacters): </strong>	Let \(P\) be a finite lattice, \((L, R)\) a factorization system on \(P\).  Then \(\chi^{(L, R)}(x)=\max\{y:0~L~y\leq x\}\) and \(\lambda^{(L, R)}(x)=\max\{y:x~L~y\}\).
+
+							</p>
+							
+
+       
+							</div>	
+
+							<div>
+								<center>
+									<script type="text/tikz">
+									  \begin{tikzpicture}[scale=6]
+									    \node (A) at (0,1){\Huge $x$};
+									    \node (B) at (1,1){\Huge $\lambda(x)$};
+									    \node (C) at (0,0){\Huge $y'$};
+									    \node (D) at (1,0){\Huge $1$};
+
+									    \draw[->, thick] (A) -- (B);
+									    \draw[->, thick] (C) --  (D);
+									    \draw[->, thick, red] (B) -- node[right]{\Large R} (D);
+									    \draw[->, thick, blue] (A) --  node[left]{\Large L} (C);
+									    \draw[->, thick, dashed]  (C)--  (B);
+									\end{tikzpicture}
+									</script>
+								</center>
+								<p style="font-size: 28px;" >
+								    \[\lambda(x) = \min\{y: x\leq y ~R~ 1\}\]
+
+							</p>
+							</div>
+														
+						</section>	
+
+
+
+
+
+
 
 						<section data-auto-animate>
 							<div class="r-frame">
@@ -1109,14 +1190,10 @@ and saturated transfer systems on \(P\).
 
 					<section>
 						<h3>Thank You!</h3>
-						<p style="font-size: 28px;" class="r-frame">
+						<p style="font-size: 25px;" class="r-frame">
 								I wish to thank the organizers of this session: Devin Hensley, Millie Rose,  Danika Van Niel, Valentia Zapata Castro for their efforts.  The organizers and leaders of the MRC in Homotopical Combinatorics: Scott Balchin, Andrew Blumberg, Mike Hill, Kyle Ormsby, Angélica Osorno, and Constanze Roitzheim for bringing their work to a wider audience and their tutelage.  The AMS and NSF for their support.  Finally and most importantly, my fellow coCharacters Jishnu Bose,  Hannah Housden, Legrand Jones, Chloe Lewis, Kyle Ormsby, and Millie Rose for the good times and good math!
 
 								</p>
-					</section>
-
-					<section>
-						<h2>Any Questions?</h2>	
 						<div class="container">
 							<div class="col">
 							<center>
@@ -1128,9 +1205,10 @@ and saturated transfer systems on \(P\).
 								<img src="img/dualcoChar.gif" width="100%">
 							</center>
 							</div>	
-						</div>
-							
+						</div>		
 					</section>
+
+					
 
 						
 						
